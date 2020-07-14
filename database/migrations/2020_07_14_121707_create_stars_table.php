@@ -14,7 +14,10 @@ class CreateStarsTable extends Migration
     public function up()
     {
         Schema::create('stars', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('nom',120);
+            $table->string('prenom',120);
+            $table->string('image');
             $table->timestamps();
         });
     }

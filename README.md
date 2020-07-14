@@ -107,4 +107,4 @@ Pour crée le Modèle __Star__ on utilise la commande suivante :
 
 __php artisan make:model Star -a__
 
-Cette commande nous peremetetra de céer le Model, Factory, le fichier de migration, leSeeder et le controller en même temps.
+Cette commande nous permettra de céer le Model, Factory, le fichier de migration, le Seeder et le controller en même temps.
