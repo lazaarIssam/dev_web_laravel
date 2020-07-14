@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Star;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -49,7 +50,7 @@ class StarController extends Controller
     public function store(Request $request)
     {
         //dd($request->input());
-        $star = new Tricien();
+        $star = new Star();
         $star->nom = $request->nom;
         $star->prenom = $request->prenom;
         $star->description = $request->description;
@@ -58,10 +59,10 @@ class StarController extends Controller
             $star->image = $request->image->store('images', 'public');
         }
 
-        $tricien->save();
+        $star->save();
         Session::flash('success', 'Bien enregister');
 
-        return redirect()->route('welcome');
+        return redirect()->route('star.index');
     }
 
     /**
@@ -93,12 +94,12 @@ class StarController extends Controller
      * @param  \App\Star  $star
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Star $star)
+    public function update(Request $request)
     {
         $star = Star::find($request->id);
-        $star->name = $request->nom;
-        $star->tel = $request->prenom;
-        $star->email = $request->description;
+        $star->nom = $request->nom;
+        $star->prenom = $request->prenom;
+        $star->description = $request->description;
         Storage::disk('public')->delete($star->image);
         if ($request->hasFile('image')) {
             $star->image = $request->image->store('images', 'public');
