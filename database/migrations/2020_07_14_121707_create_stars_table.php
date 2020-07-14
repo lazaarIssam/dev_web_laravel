@@ -14,7 +14,11 @@ class CreateStarsTable extends Migration
     public function up()
     {
         Schema::create('stars', function (Blueprint $table) {
+            //id se crée automatiquement
+            // id increments atomoatically
             $table->bigIncrements('id');
+            // nom et prenom ont une taille max de 120
+            // nom and prenom have a max size of 120
             $table->string('nom',120);
             $table->string('prenom',120);
             $table->text('description');

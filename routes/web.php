@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// les routes pour le controlleur StarController
+// The controllers for the StarController
+Route::get('/star', 'StarController@index')->name('star.index');
