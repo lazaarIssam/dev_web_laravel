@@ -58,7 +58,7 @@ class StarController extends Controller
             $star->image = $request->image->store('images', 'public');
         }
         $star->save();
-        
+
         Session::flash('success', 'Bien enregister');
         return redirect()->route('star.index');
     }
@@ -117,6 +117,8 @@ class StarController extends Controller
     public function destroy($id)
     {
         $star = Star::find($id);
+        //-----------------
+        //-----------------
         $star->delete();
         Session::flash('success', 'This fournisseur is deleted successfully');
 
