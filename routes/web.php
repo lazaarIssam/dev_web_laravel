@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// les routes pour le controlleur StarController
+// Liste des routes pour le controlleur StarController
 // The controllers for the StarController
 Route::get('/star', 'StarController@index')->name('star.index');
+Route::post('/star/store', 'StarController@store')->name('star.store');
+Route::post('/update', 'StarController@update')->name('star.update');
+Route::post('/star/{id}', 'StarController@destroy')->name('star.destroy');
+//fin de la liste
