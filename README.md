@@ -77,3 +77,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Projet
+
+## Intallation et configuration 
+
+Pour commencer, on verifie si on a bien PHP7, Composer 1.10 installer sur notre machine.
+* PHP 7 
+Pour installer PHP7 il suffit de cliquer [ici](https://www.php.net/downloads.php)
+* Composer
+Pour installer la dernière version Composer 1.10, cliqué [ici](https://getcomposer.org/download/)
+
+* Base des données
+Pour ce projet on va utiliser une base de donnée deploier sur [always-data](https://phpmyadmin.alwaysdata.com), voir le fichier env.example pour l'accès à la base.
+
+## Création de projet
+
+Pour crée notre projet on utilise la commande suivante : 
+
+__composer create-project --prefer-dist laravel/laravel Test_dev_web_laravel__
+
+Cette commande vous permet de crée un projet laravel 7 si vous avez une version laravel ancienne sur votre machine, sinon pour pouvez utiliser la commande suivante : 
+
+__laravel new Test_dev_web_laravel__
+
+## Création du Modèle Star
+
+Pour crée le Modèle __Star__ on utilise la commande suivante : 
+
+__php artisan make:model Star -a__
+
+Cette commande nous peremetetra de céer le Model, Factory, le fichier de migration, leSeeder et le controller en même temps.
