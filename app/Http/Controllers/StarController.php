@@ -54,14 +54,12 @@ class StarController extends Controller
         $star->nom = $request->nom;
         $star->prenom = $request->prenom;
         $star->description = $request->description;
-
         if ($request->hasFile('image')) {
             $star->image = $request->image->store('images', 'public');
         }
-
         $star->save();
+        
         Session::flash('success', 'Bien enregister');
-
         return redirect()->route('star.index');
     }
 
@@ -105,8 +103,8 @@ class StarController extends Controller
             $star->image = $request->image->store('images', 'public');
         }
         $star->save();
-        Session::flash('success', 'Bien modifier');
 
+        Session::flash('success', 'Bien modifier');
         return redirect()->route('star.index');
     }
 
