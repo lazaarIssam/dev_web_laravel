@@ -17,6 +17,7 @@ class CreateStarsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nom',120);
             $table->string('prenom',120);
+            $table->text('description');
             $table->string('image');
             $table->timestamps();
         });
