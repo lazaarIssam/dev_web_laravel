@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Stars
+                    <a href="{{ route('home') }}">Stars</a>
                 </div>
             </div>
         </div>

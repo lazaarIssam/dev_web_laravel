@@ -3,10 +3,11 @@
 @section('content')
 
 <div class="container">
+  @include('partials._messages')
         <div class="row">
           <div class="col-sm-12">
-                <button type="button" class="btn btn-primary float-right mb-2" data-toggle="modal" data-target="#exampleModal">Ajouter</button>
-
+                <button type="button" class="btn btn-outline-success float-right mb-2" data-toggle="modal" data-target="#exampleModal">Ajouter</button>
+                {{-- Modal for Adding Star || Modal pour l'ajout des stars --}}
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -29,7 +30,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description1" class="col-form-label">Description :</label>
-                                    <input type="text" class="form-control" name="description" id="description1">
+                                    <textarea type="text" class="form-control" name="description" id="description1"> </textarea>
                                 </div>
                                 <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="image1" name="image">
@@ -68,7 +69,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description1" class="col-form-label">Description :</label>
-                                    <input type="text" class="form-control" name="description" id="description">
+                                    <textarea type="text" class="form-control" name="description" id="description"></textarea>
                                 </div>
                                 <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="image" name="image">
@@ -85,7 +86,7 @@
                       </div>
 
 
-            <table class="table table-bordered table-hover">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">Photo</th>
@@ -100,7 +101,7 @@
                     @foreach($stars as $star)
                         <tr>
                             <td scope="row text-center">
-        <img src="{{asset('storage/'.$star->image)}}" class="img-thumbnail rounded-circle" style="width: 80px;height: 50px;">
+        <img src="{{asset('storage/'.$star->image)}}" class="img-thumbnail " style="width: 90px;height: 60px;">
                             </td>
                         <input type="hidden" id="idtr{{$cnt}}" value="{{ $star->id }}">
                         <input type="hidden" id="nomtr{{$cnt}}" value="{{ $star->nom }}">
@@ -112,12 +113,12 @@
                             <td>
                             <div class="row">
                             <div class="col-md-4">
-                            <button type="button" id="modifier{{$cnt}}" onclick="modifier({{$cnt}})" class="btn btn-warning btn-sm"> Modifier</button>
+                            <button type="button" id="modifier{{$cnt}}" onclick="modifier({{$cnt}})" class="btn btn-outline-primary btn-sm"> Modifier</button>
                             </div>
                             <div class="col-md-4">
                             <form method="post" action="{{ route('star.destroy', ['id' => $star->id]) }}">
                                 @csrf
-                                  <button class="btn btn-danger btn-sm"> Supprimer</button>
+                                  <button class="btn btn-outline-danger btn-sm"> Supprimer</button>
                             </form>
                             </div>
                             </div>

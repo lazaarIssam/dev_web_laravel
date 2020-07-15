@@ -120,7 +120,7 @@ class StarController extends Controller
         //-----------------
         //-----------------
         $star->delete();
-        Session::flash('success', 'This fournisseur is deleted successfully');
+        Session::flash('success', 'Bien supprimer');
 
         return redirect()->route('star.index');
     }
