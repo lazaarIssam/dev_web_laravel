@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-sm-12">
                 <button type="button" class="btn btn-primary float-right mb-2" data-toggle="modal" data-target="#exampleModal">Ajouter</button>
-            {{-- Model d'ajoute de star --}}
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -24,7 +24,7 @@
                                   <input type="text" class="form-control" name="nom" id="nom1" required>
                                 </div>
                                 <div class="form-group">
-                                  <label for="prenom1" class="col-form-label">Prénom :</label>
+                                  <label for="prenom1" class="col-form-label">Prenom :</label>
                                   <input type="text" class="form-control" name="prenom" id="prenom1" required>
                                 </div>
                                 <div class="form-group">
@@ -32,7 +32,7 @@
                                     <input type="text" class="form-control" name="description" id="description1">
                                 </div>
                                 <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="image" name="image">
+                                        <input type="file" class="custom-file-input" id="image1" name="image">
                                         <label class="custom-file-label" for="image">Ajouter une image</label>
                                 </div>
                               </form>
@@ -44,13 +44,53 @@
                           </div>
                         </div>
                       </div>
-                      {{-- Tableau d'affichage/action --}}
+
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel1">Modifier star</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{ route('star.update') }}" method="post" id="frm1" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" id="idm" name="id">
+                                <div class="form-group">
+                                  <label for="nom" class="col-form-label">Nom :</label>
+                                  <input type="text" class="form-control" name="nom" id="nom" required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="prenom1" class="col-form-label">Prenom :</label>
+                                  <input type="text" class="form-control" name="prenom" id="prenom" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description1" class="col-form-label">Description :</label>
+                                    <input type="text" class="form-control" name="description" id="description">
+                                </div>
+                                <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="image" name="image">
+                                        <label class="custom-file-label" for="image">Ajouter une image</label>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close</button>
+                              <button type="submit" form="frm1" class="btn btn-primary"> Update</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th scope="col">Photo</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
+                    <th scope="col">Prenom</th>
                     <th scope="col">Description</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -62,18 +102,22 @@
                             <td scope="row text-center">
         <img src="{{asset('storage/'.$star->image)}}" class="img-thumbnail rounded-circle" style="width: 80px;height: 50px;">
                             </td>
+                        <input type="hidden" id="idtr{{$cnt}}" value="{{ $star->id }}">
+                        <input type="hidden" id="nomtr{{$cnt}}" value="{{ $star->nom }}">
+                        <input type="hidden" id="prenomtr{{$cnt}}" value="{{ $star->prenom }}">
+                        <input type="hidden" id="descriptiontr{{$cnt}}" value="{{ $star->description }}">
                             <td scope="row text-center">{{ $star->nom }}</td>
                             <td scope="row text-center">{{ $star->prenom }}</td>
                             <td scope="row text-center">{{ $star->description }}</td>
                             <td>
                             <div class="row">
-                            {{-- <div class="col-md-4">
+                            <div class="col-md-4">
                             <button type="button" id="modifier{{$cnt}}" onclick="modifier({{$cnt}})" class="btn btn-warning btn-sm"> Modifier</button>
-                            </div> --}}
+                            </div>
                             <div class="col-md-4">
                             <form method="post" action="{{ route('star.destroy', ['id' => $star->id]) }}">
                                 @csrf
-                                  <button class="btn btn-danger btn-sm">  Supprimer</button>
+                                  <button class="btn btn-danger btn-sm"> Supprimer</button>
                             </form>
                             </div>
                             </div>
@@ -87,5 +131,14 @@
         </div>
         </div>
 </div>
-
-@stop
+<script>
+  function modifier(params) {
+      //alert(params);
+     $('#idm').val($('#idtr'+params).val());
+                 $('#nom').val($('#nomtr'+params).val());
+                 $('#prenom').val($('#prenomtr'+params).val());
+                 $('#description').val($('#descriptiontr'+params).val());
+                 $('#exampleModal1').modal();
+  }
+ </script>
+@endsection
