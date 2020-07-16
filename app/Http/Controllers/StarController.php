@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Star;
+use Auth;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,6 +28,7 @@ class StarController extends Controller
     public function index()
     {
         $stars = Star::all();
+        //$stars = Star::where('user_id', Auth::user()->id)->get();
 
         return view('star.index')->with('stars', $stars);
     }
@@ -51,6 +53,7 @@ class StarController extends Controller
     {
         //dd($request->input());
         $star = new Star();
+        $star->user_id = Auth::user()->id;
         $star->nom = $request->nom;
         $star->prenom = $request->prenom;
         $star->description = $request->description;
@@ -95,6 +98,12 @@ class StarController extends Controller
     public function update(Request $request)
     {
         $star = Star::find($request->id);
+        //On verifie si la personne authentifier à créer l'objet star avant de faire la modification
+        //Cette verification est effectuée au cas d'une beug où une autre personne peu voir d'autre objet
+        //star à part les tiennes
+        //We verifie if the authentified user is the creator of the object star before going updating the object
+        //This verification is added in case the user can see other users created star objects
+        if($star->user_id == Auth::user()->id){
         $star->nom = $request->nom;
         $star->prenom = $request->prenom;
         $star->description = $request->description;
@@ -103,8 +112,10 @@ class StarController extends Controller
             $star->image = $request->image->store('images', 'public');
         }
         $star->save();
-
         Session::flash('success', 'Bien modifier');
+        }else{
+            Session::flash('failed', 'Vous ne pouvez pas modifier ce star');
+        }
         return redirect()->route('star.index');
     }
 
@@ -117,11 +128,17 @@ class StarController extends Controller
     public function destroy($id)
     {
         $star = Star::find($id);
-        //-----------------
-        //-----------------
+        //On verifie si la personne authentifier à créer l'objet star avant de faire la suppression
+        //Cette verification est effectuée au cas d'une beug où une autre personne peu voir d'autre objet
+        //star à part les tiennes
+        //We verifie if the authentified user is the creator of the object star before deleting the object
+        //This verification is added in case the user can see other users created star objects
+        if($star->user_id == Auth::user()->id){
         $star->delete();
         Session::flash('success', 'Bien supprimer');
-
+        }else{
+            Session::flash('failed', 'Vous ne pouvez pas supprimer ce star');
+        }
         return redirect()->route('star.index');
     }
 }

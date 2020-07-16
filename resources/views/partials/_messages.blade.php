@@ -1,7 +1,18 @@
+{{-- Flash message si l'operation est un succes --}}
+{{-- Flash message if the opération is a succes --}}
 @if (Session::has('success'))
 	
 	<div class="alert alert-success" role="alert">
 		<strong>Success:</strong> {{ Session::get('success') }}
+	</div>
+
+@endif
+{{-- Flash message si l'operation est un fail --}}
+{{-- Flash message if the opération failed --}}
+@if (Session::has('failed'))
+	
+	<div class="alert alert-danger" role="alert">
+		<strong>Failed:</strong> {{ Session::get('failed') }}
 	</div>
 
 @endif
