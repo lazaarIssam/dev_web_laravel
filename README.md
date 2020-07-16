@@ -9,6 +9,15 @@ Laravel est un framework d'application web avec une syntaxe expressive et élég
 
 # Projet
 
+## À propos du project
+
+Ce project permet de :
+* Visualiser en public une liste des stars.
+* Créer un compte et se connecter.
+* Ajouter, modifier et supprimer un star (La modification et la suppression s'effectue que sur les stars crée par soit même).
+* A une interface responsive, simple et agréable pour l'utilisateur.
+
+
 ## Intallation et configuration 
 
 Pour commencer, on verifie si on a bien PHP7, Composer 1.10 installer sur notre machine.
@@ -41,3 +50,9 @@ Cette commande nous permettra de céer le Model, Factory, le fichier de migratio
 On effectue la commande suivante afin de créer un lien de stockage dans notre application : 
 
 __php artisan storage:link__
+
+## Ajoute du champs foreign key 
+
+Pour ajouter le champs de la clef étrangère on utilise la commande suivante:
+
+__php artisan make:migration add_column_user_id --table=stars__
