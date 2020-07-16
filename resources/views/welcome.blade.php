@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <!-- Styles -->
         <style>
@@ -81,8 +82,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <a href="{{ route('home') }}">Stars</a>
+                    <a href="{{ route('home') }}" role="button" class="btn btn-light" style="font-size: 100px; text-decoration: none">Stars </a>
                 </div>
+                <p>Cliquez sur Stars pour accèder à la liste des stars !</p>
             </div>
         </div>
     </body>

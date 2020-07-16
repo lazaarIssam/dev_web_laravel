@@ -2,84 +2,78 @@
 
 @section('content')
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    body {
-      margin: 0;
-      font-family: "Lato", sans-serif;
-    }
-    
-    .sidebar {
-      margin: 0;
-      padding: 0;
-      width: 200px;
-      background-color: #f1f1f1;
-      position: fixed;
-      height: 100%;
-      overflow: auto;
-    }
-    
-    .sidebar a {
-      display: block;
-      color: black;
-      padding: 16px;
-      text-decoration: none;
-    }
-     
-    .sidebar a.active {
-      background-color: #4c6faf;
-      color: white;
-    }
-    
-    .sidebar a:hover:not(.active) {
-      background-color: rgb(172, 172, 172);
-      color: white;
-    }
-    
-    div.content {
-      margin-left: 200px;
-      padding: 1px 16px;
-      height: 1000px;
-    }
-    
-    @media screen and (max-width: 700px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-      .sidebar a {float: left;}
-      div.content {margin-left: 0;}
-    }
-    
-    @media screen and (max-width: 400px) {
-      .sidebar a {
-        text-align: center;
-        float: none;
-      }
-    }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible {
+  background-color: rgb(223, 223, 223);
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-weight: bold;
+  outline: none;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: 5px
+}
+
+.active, .collapsible:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+img {
+  float: left;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width:170px;
+  height:170px;
+  margin-right:15px;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  font: normal;
+  margin: 5px;
+  background-color: #f1f1f1;
+}
     </style>
     </head>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1>Pofile Browser</h1>
             {{-- Start of code --}}
-            <body>
-                
-                <div class="sidebar">
-                    @foreach($list as $star)
-                  <a class="active" >{{ $star->nom }} {{ $star->prenom }} </a>
-                </div>
-                <div class="content">
-                    <img src="{{asset('storage/'.$star->image)}}" class="img-thumbnail " style="width: 90px;height: 60px;">
-                  <p>{{ $star->description }}</p>
-                </div>
-                </body>
-                @endforeach
-                </html>
-
+            @foreach($list as $star)
+            <button type="button" class="collapsible">{{ $star->nom }} {{ $star->prenom }}</button>
+            <div class="content">
+            <h2>{{ $star->nom }} {{ $star->prenom }}</h2>
+            <img src="{{asset('storage/'.$star->image)}}">
+            <p>{{ $star->description }}.</p>
+            </div>
+            @endforeach
             {{-- Finish of code --}}
         </div>
     </div>
 </div>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
 @endsection

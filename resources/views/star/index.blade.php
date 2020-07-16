@@ -86,7 +86,7 @@
                       </div>
 
 
-            <table class="table table-striped">
+            <table class="table table-striped" >
                 <thead>
                 <tr>
                     <th scope="col">Photo</th>
@@ -99,7 +99,7 @@
                 <tbody>
                    @php $cnt=1; @endphp
                     @foreach($stars as $star)
-                        <tr>
+                        <tr style="white-space: wrap;overflow: hidden;">
                             <td scope="row text-center">
         <img src="{{asset('storage/'.$star->image)}}" class="img-thumbnail " style="width: 90px;height: 60px;">
                             </td>
@@ -109,7 +109,7 @@
                         <input type="hidden" id="descriptiontr{{$cnt}}" value="{{ $star->description }}">
                             <td scope="row text-center">{{ $star->nom }}</td>
                             <td scope="row text-center">{{ $star->prenom }}</td>
-                            <td scope="row text-center">{{ $star->description }}</td>
+                            <td scope="row text-center" style="max-width: 300px;max-height: 10px">{{ $star->description }}</td>
                             <td>
                             <div class="row">
                             <div class="col-md-4">
