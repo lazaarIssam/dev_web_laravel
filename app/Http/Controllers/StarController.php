@@ -27,8 +27,12 @@ class StarController extends Controller
      */
     public function index()
     {
-        $stars = Star::all();
-        //$stars = Star::where('user_id', Auth::user()->id)->get();
+        //Affiche que tous les objets
+        //Shows all the star objects
+        //$stars = Star::all();
+        //Affiche que les objets star d'utilisateur authentifier
+        //Shows the star objects of the authentified user
+        $stars = Star::where('user_id', Auth::user()->id)->get();
 
         return view('star.index')->with('stars', $stars);
     }
