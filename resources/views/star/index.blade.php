@@ -109,7 +109,7 @@
                         <input type="hidden" id="descriptiontr{{$cnt}}" value="{{ $star->description }}">
                             <td scope="row text-center">{{ $star->nom }}</td>
                             <td scope="row text-center">{{ $star->prenom }}</td>
-                            <td scope="row text-center" style="max-width: 300px;max-height: 10px">{{ $star->description }}</td>
+                            <td scope="row text-center" style="max-width: 300px;max-height: 10px">{{ substr($star->description, 0,  100) }}...</td>
                             <td>
                             <div class="row">
                             <div class="col-md-4">
